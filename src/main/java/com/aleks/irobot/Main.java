@@ -1,5 +1,10 @@
 package com.aleks.irobot;
 
+import com.aleks.irobot.config.JavaConfig;
+import com.aleks.irobot.factory.MyObjectFactory;
+import com.aleks.irobot.functionality.ConsoleSpeakerImpl;
+import com.aleks.irobot.functionality.Speaker;
+
 import java.util.Map;
 
 public class Main

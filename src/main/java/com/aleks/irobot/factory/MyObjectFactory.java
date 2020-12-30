@@ -1,6 +1,8 @@
-package com.aleks.irobot;
+package com.aleks.irobot.factory;
 
 
+import com.aleks.irobot.annotations.InjectRandomInt;
+import com.aleks.irobot.config.MyConfig;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
@@ -15,7 +17,7 @@ public class MyObjectFactory
 
   @Setter
   private MyConfig config;
-  private Reflections scanner = new Reflections("com/aleks/irobot");
+  private Reflections scanner = new Reflections("com/aleks/irobot/functionality");
 
   private MyObjectFactory()
   {

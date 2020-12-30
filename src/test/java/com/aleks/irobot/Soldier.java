@@ -1,5 +1,6 @@
 package com.aleks.irobot;
 
+import com.aleks.irobot.annotations.InjectRandomInt;
 import lombok.Getter;
 
 @Getter

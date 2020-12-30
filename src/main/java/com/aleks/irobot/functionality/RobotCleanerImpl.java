@@ -1,4 +1,6 @@
-package com.aleks.irobot;
+package com.aleks.irobot.functionality;
+
+import com.aleks.irobot.annotations.InjectRandomInt;
 
 public class RobotCleanerImpl implements RobotCleaner
 {

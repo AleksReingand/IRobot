@@ -1,4 +1,4 @@
-package com.aleks.irobot;
+package com.aleks.irobot.functionality;
 
 public class ConsoleSpeakerImpl implements Speaker
 {

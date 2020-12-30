@@ -1,5 +1,7 @@
 package com.aleks.irobot;
 
+import com.aleks.irobot.config.MyConfig;
+import com.aleks.irobot.factory.MyObjectFactory;
 import org.junit.Assert;
 import org.mockito.Mockito;
 

@@ -1,4 +1,4 @@
-package com.aleks.irobot;
+package com.aleks.irobot.config;
 
 import java.util.Map;
 
