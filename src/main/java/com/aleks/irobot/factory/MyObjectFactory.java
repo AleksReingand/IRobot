@@ -1,13 +1,18 @@
 package com.aleks.irobot.factory;
 
 
+import com.aleks.irobot.annotations.InjectByType;
 import com.aleks.irobot.annotations.InjectRandomInt;
 import com.aleks.irobot.config.MyConfig;
+import com.aleks.irobot.configurators.ObjectConfigurator;
 import lombok.Setter;
 import lombok.SneakyThrows;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 
@@ -17,10 +22,21 @@ public class MyObjectFactory
 
   @Setter
   private MyConfig config;
-  private Reflections scanner = new Reflections("com/aleks/irobot/functionality");
+  private Reflections scanner = new Reflections("com/aleks/irobot");
 
+  private List<ObjectConfigurator> objectConfigurators = new ArrayList<>();
+
+  @SneakyThrows
   private MyObjectFactory()
   {
+    Set<Class<? extends ObjectConfigurator>> classes = scanner.getSubTypesOf(ObjectConfigurator.class);
+    for(Class<? extends ObjectConfigurator> aClass : classes)
+    {
+      if(!Modifier.isAbstract(aClass.getModifiers()))
+      {
+        objectConfigurators.add(aClass.getDeclaredConstructor().newInstance());
+      }
+    }
   }
 
   public static MyObjectFactory getInstance()
@@ -30,6 +46,15 @@ public class MyObjectFactory
 
   @SneakyThrows
   public <T> T create(Class<T> type)
+  {
+    Class<? extends T> implClass = resolveImpl(type);
+    T t = implClass.getDeclaredConstructor().newInstance();
+    objectConfigurators.forEach(objectConfigurator -> objectConfigurator.configurator(t));
+
+    return t;
+  }
+
+  private <T> Class<? extends T> resolveImpl(Class<T> type)
   {
     Class<? extends T> implClass;
     if(type.isInterface())
@@ -49,21 +74,6 @@ public class MyObjectFactory
     {
       implClass = type;
     }
-
-    T t = implClass.getDeclaredConstructor().newInstance();
-
-    Field[] declaredFields = implClass.getDeclaredFields();
-    for(Field field: declaredFields)
-    {
-      InjectRandomInt annotation = field.getAnnotation(InjectRandomInt.class);
-      if(annotation != null)
-      {
-        int randomInt = new Random().nextInt(annotation.max() - annotation.min()) + annotation.min();
-        field.setAccessible(true);
-        field.set(t, randomInt);
-      }
-    }
-
-    return t;
+    return implClass;
   }
 }

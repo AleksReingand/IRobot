@@ -1,14 +1,16 @@
 package com.aleks.irobot;
 
 
-import com.aleks.irobot.factory.MyObjectFactory;
+import com.aleks.irobot.annotations.InjectByType;
 import com.aleks.irobot.functionality.RobotCleaner;
 import com.aleks.irobot.functionality.Speaker;
 
 public class IRobot
 {
-  private Speaker speaker = MyObjectFactory.getInstance().create(Speaker.class);
-  private RobotCleaner cleaner = MyObjectFactory.getInstance().create(RobotCleaner.class);
+  @InjectByType(requared = false)
+  private Speaker speaker;
+  @InjectByType(requared = false)
+  private RobotCleaner cleaner;
 
   public void cleanRoom()
   {

@@ -12,9 +12,9 @@ public class Main
   public static void main(String[] args)
   {
     Map<Class<?>, Class<?>> map = Map.of(Speaker.class, ConsoleSpeakerImpl.class);
-    MyObjectFactory.getInstance().setConfig(new JavaConfig(map));
+    MyObjectFactory.getInstance().setConfig(new JavaConfig(map, ""));
 
-    IRobot robot = new IRobot();
+    IRobot robot = MyObjectFactory.getInstance().create(IRobot.class);
     robot.cleanRoom();
   }
 }

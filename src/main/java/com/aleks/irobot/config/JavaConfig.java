@@ -1,19 +1,20 @@
 package com.aleks.irobot.config;
 
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+
 import java.util.Map;
 
+@Getter
+@RequiredArgsConstructor
 public class JavaConfig implements MyConfig
 {
   private final Map<Class<?>, Class<?>> ifc2ImplClass;
-
-  public JavaConfig(Map<Class<?>, Class<?>> map)
-  {
-    this.ifc2ImplClass = map;
-  }
+  private final String packageToScan;
 
   @Override
-  public <T> Class<T> getImpl(Class<T> type)
+  public <T> Class<? extends T> getImpl(Class<T> type)
   {
-    return (Class<T>) ifc2ImplClass.get(type);
+    return (Class<? extends T>) ifc2ImplClass.get(type);
   }
 }

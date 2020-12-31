@@ -4,8 +4,7 @@ import com.aleks.irobot.annotations.InjectRandomInt;
 
 public class RobotCleanerImpl implements RobotCleaner
 {
-
-  @InjectRandomInt(min = 0, max = 5)
+  @InjectRandomInt
   public int repeat;
 
   public void clean()
