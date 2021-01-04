@@ -1,6 +1,8 @@
 package com.aleks.irobot.configurators;
 
 import com.aleks.irobot.annotations.InjectRandomInt;
+import com.aleks.irobot.factory.ApplicationContext;
+import com.aleks.irobot.factory.ObjectFactory;
 import lombok.SneakyThrows;
 
 import java.lang.reflect.Field;
@@ -10,7 +12,7 @@ public class InjectRandomIntAnnotationObjectConfiguratorImpl implements ObjectCo
 {
   @Override
   @SneakyThrows
-  public void configurator(Object t)
+  public void configurator(Object t, ApplicationContext context)
   {
     Class<?> implClass = t.getClass();
     Field[] declaredFields = implClass.getDeclaredFields();

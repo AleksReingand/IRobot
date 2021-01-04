@@ -1,7 +1,5 @@
 package com.aleks.irobot;
 
-import com.aleks.irobot.config.MyConfig;
-
 //public class MockConfig implements MyConfig
 //{
 //  @Override

@@ -7,7 +7,7 @@ import java.util.Map;
 
 @Getter
 @RequiredArgsConstructor
-public class JavaConfig implements MyConfig
+public class JavaConfig implements Config
 {
   private final Map<Class<?>, Class<?>> ifc2ImplClass;
   private final String packageToScan;

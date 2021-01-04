@@ -1,8 +1,10 @@
 package com.aleks.irobot.functionality;
 
+import com.aleks.irobot.annotations.Benchmark;
 import com.aleks.irobot.annotations.InjectRandomInt;
 
-public class RobotCleanerImpl implements RobotCleaner
+@Benchmark
+public final class RobotCleanerImpl implements RobotCleaner
 {
   @InjectRandomInt
   public int repeat;
